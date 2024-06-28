@@ -1,0 +1,14 @@
+version: "3"
+services:
+  screenshot:
+    image: screenshot:v1
+    container_name: screenshot
+    restart: always
+    ports:
+      - "3000:3000"
+    environment:
+      - TZ=Asia/Ho_Chi_Minh
+      - HOST=localhost
+      - PORT=3000
+    volumes:
+    - /zfsdata/image:/usr/src/app/image

@@ -1,0 +1,48 @@
+{
+    "type": "object",
+    "properties": {
+        "base_url": {
+            "type": "string"
+        },
+        "width": {
+            "type": "integer"
+        },
+        "height": {
+            "type": "integer"
+        },
+        "username": {
+            "type": "string"
+        },
+        "password": {
+            "type": "string"
+        },
+        "element": {
+            "type": "string"
+        },
+        "urls": {
+            "type": "array",
+            "items": {
+                "type": "object",
+                "properties": {
+                    "name": {
+                        "type": "string"
+                    },
+                    "url": {
+                        "type": "string"
+                    }
+                },
+                "required": ["name", "url"]
+            }
+        }
+    },
+    "required": [
+        "base_url",
+        "width",
+        "height",
+        "username",
+        "password",
+        "element",
+        "urls"
+    ],
+    "additionalProperties": false
+}
