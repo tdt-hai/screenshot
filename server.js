@@ -18,7 +18,7 @@ logger.token('date', (req, res, tz) => {
     return moment().tz(tz).format();
   })
 app.use(logger(':remote-addr - :remote-user [:date[Asia/Ho_Chi_Minh]] ":method :url HTTP/:http-version" :status  - :response-time ms'));
-app.use('/image', express.static('image'));
+app.use('/images', express.static('images'));
 app.use('/api',screenshotRouter);
 app.use('/api/docs',swaggerUI.serve, swaggerUI.setup(swaggerDocument))
 cron
