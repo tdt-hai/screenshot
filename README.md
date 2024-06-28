@@ -1,10 +1,5 @@
 # Screenshot Capture
-```shell
-npm install
-```
-```shell
-npm start
-```
+![Thumbnail](https://i.imgur.com/7eJgDa6.png)
 ```shell
 add .env 
 HOST=localhost
@@ -21,4 +16,10 @@ if path linux '/usr/bin/google-chrome'
 ```shell
 Create save screenshot image folder
 images
+```
+```shell
+npm install
+```
+```shell
+npm start
 ```

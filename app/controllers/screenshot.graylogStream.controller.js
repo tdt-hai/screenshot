@@ -3,22 +3,6 @@ require('dotenv').config();
 
 async function postScreenShot(req, res) {
     const body = req.body;
-
-    if (body.base_url == null) {
-        return res.status(400).send({ 'message': 'base_url is required' });
-    }
-    if (body.username == null) {
-        return res.status(400).send({ 'message': 'username is required' });
-    }
-    if (body.password == null) {
-        return res.status(400).send({ 'message': 'password is required' });
-    }
-    if (body.urls == null) {
-        return res.status(400).send({ 'message': 'urls is required' });
-    }
-    if (!Array.isArray(body.urls)) {
-        return res.status(400).send({ 'message': 'urls must be valid array name and url' });
-    }
     const folder = './images';
     const width = parseInt(body.width) || 1800;
     const height = parseInt(body.height) || 750;
@@ -28,7 +12,7 @@ async function postScreenShot(req, res) {
     // /usr/bin/google-chrome
     const browserOptions = {
         headless: true,
-        executablePath: '/usr/bin/google-chrome',
+        executablePath: 'C:/Program Files/Google/Chrome/Application/chrome.exe',
         args: ['--ignore-certificate-errors', '--enable-features=NetworkService', '--no-sandbox', '--disable-setuid-sandbox', '--disable-gpu', '--enable-features=WebContentsForceDark']
     };
     try {
@@ -53,7 +37,7 @@ async function postScreenShot(req, res) {
         await page.waitForNavigation( { waitUntil: 'networkidle0' }, { timeout: 3 });
         const now = Date.now();
         const paths = [];
-        const baseurl = process.env.HOST || `http://localhost:${global.PORT}`;
+        const baseurl = `http://${global.HOST || process.env.HOST}:${global.PORT}`;
         for (const i in body.urls) {
             var name = `${now}_${body.urls[i].name}.jpg`;
             await page.goto(`${body.base_url}/${body.urls[i].url}`, { waitUntil: 'networkidle0' }, { timeout: 0 });
@@ -66,7 +50,7 @@ async function postScreenShot(req, res) {
             await page.screenshot({ path: `${folder}/${name}`, type: "jpeg", quality: 100, omitBackground: true, fullPage: true  });
             paths.push({
                 'name': body.urls[i].name,
-                'url': `${baseurl}/image/${name}`
+                'url': `${baseurl}/images/${name}`
             })
         }
         await browser.close();
