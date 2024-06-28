@@ -3,7 +3,7 @@ const fsExtra = require('fs-extra');
 cron.schedule('30 23 * * *', () => {
   console.log('Remove image every 23:30 PM daily');
   try{
-      fsExtra.emptyDirSync('./image');
+      fsExtra.emptyDirSync('./images');
       console.log('Remove all file success!')
   }catch(err){
     console.error(err)
